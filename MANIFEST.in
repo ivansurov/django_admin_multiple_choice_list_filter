@@ -1,0 +1,4 @@
+include LICENSE
+include README.rst README DESCRIPTION
+recursive-include django_admin_multiple_choice_list_filter/static *
+recursive-include django_admin_multiple_choice_list_filter/templates *

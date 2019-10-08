@@ -1,0 +1,40 @@
+{% load i18n %}
+<h3>{% blocktrans with filter_title=title %} By {{ filter_title }} {% endblocktrans %}<small class="clear"><a href="">Clear</a></small></h3>
+<form method="GET" action="" class="mulitple-choice">
+    {{ spec.media }}
+    <p>
+        <select multiple="multiple" name="multiple_choice_{{ title }}">
+        {% for choice in choices %}
+            {% if not choice.reset %}
+                <option {% if choice.selected %}selected{% endif %}
+                        value="{{ choice.id }}"
+                        data-query_string="{% if choice.selected and choice.exclude_query_string %}{{ choice.exclude_query_string|iriencode }}{% elif not choice.selected and choice.include_query_string %}{{ choice.include_query_string|iriencode }}{% else %}{{ choice.query_string|iriencode }}{% endif %}">
+                    {{ choice.display }}
+                </option>
+            {% endif %}
+        {% endfor %}
+        </select>
+    </p>
+    <script>
+        (function($) {
+            $(document).ready(function() {
+                var multiple_select = $('select[name="multiple_choice_{{ title }}"]').select2();
+                $('select[name="multiple_choice_{{ title }}"]')
+                    .on('select2:select', function (e) {
+                        window.location.href = $(e.params.data.element).data('query_string');
+                    })
+                    .on('select2:unselect', function (e) {
+                        window.location.href = $(e.params.data.element).data('query_string');
+                    });
+                $('.mulitple-choice input[value=CLEAR]').on("click", function () {
+                    //multiple_select.val(null).trigger("change");
+                    {% for choice in choices %}
+                        {% if choice.reset %}
+                            window.location.href = '{{ choice.query_string|iriencode }}';
+                        {% endif %}
+                    {% endfor %}
+                });
+            });
+        }(django.jQuery));
+    </script>
+</form>

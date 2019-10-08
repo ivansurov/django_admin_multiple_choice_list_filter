@@ -1,0 +1,20 @@
+#changelist-filter h3 > small.clear {
+    font-size: 7pt;
+    color: #999;
+}
+#changelist-filter h3 > small.clear:hover {
+    color: #036;
+}
+#changelist-filter form.mulitple-choice > p {
+    padding: 0 15px 15px;
+}
+#changelist-filter form.mulitple-choice .select2-container {
+    width: 100% !important;
+}
+#changelist-filter form.mulitple-choice .select2-container ul {
+    padding: 0 5px;
+    margin: 0;
+}
+#changelist-filter form.mulitple-choice .select2-container ul li {
+    padding: 0 5px;
+}
