@@ -1,3 +1,4 @@
 /dist
 /django_multiple_choice_list_filter.egg-info
 /.idea
+.DS_Store
